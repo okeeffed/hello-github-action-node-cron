@@ -1,8 +1,8 @@
 name: "Updated hello.txt"
 on:
   schedule:
-  # Run every two minute
-  - cron: "*/2 * * * *"
+  # Run every five minutes
+  - cron: "*/5 * * * *"
 
 jobs:
   update-hello:
