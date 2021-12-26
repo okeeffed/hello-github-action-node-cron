@@ -1,0 +1,25 @@
+name: "Updated hello.txt"
+on:
+  schedule:
+  # Run every two minute
+  - cron: "*/2 * * * *"
+
+jobs:
+  update-hello:
+    env:
+      # Set the NODE_ENV to test
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - run: npm run start 
+    - run: |
+        git config --global user.name "Cron Bot"
+        git config --global user.email "hello@dennisokeeffe.com"
+
+        git add -A
+        git commit -m "chore: Updated hello.txt"
+        git push
