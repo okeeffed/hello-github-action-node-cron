@@ -1,8 +1,12 @@
 name: "Updated hello.txt"
 on:
-  schedule:
-  # Run every five minutes
-  - cron: "*/5 * * * *"
+  # Update the file on push so cron job doesn't run endlessly.
+  push:
+    branches:
+      - main
+  # schedule:
+  # # Run every five minutes
+  # - cron: "*/5 * * * *"
 
 jobs:
   update_hello_file:
